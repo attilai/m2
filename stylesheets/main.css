@@ -1,3 +1,14 @@
 #main-block {
     color: #055;
 }
+
+canvas {
+    background: #fff;
+    border: dashed 2px;
+}
+
+a.download-canvas {
+    background: #69c;
+    color: #fff;
+    padding: 5px 10px;
+}
