@@ -21,11 +21,15 @@
     </section>
 
     <section class="main-content">
+        <div class="btn-container">
+            <canvas></canvas>
+            <a id="clear" class="btn download-canvas">Clear</a>
+        </div>
+
+
         <div id="main-block">
             Test block
         </div>
-
-        <canvas></canvas>
 
         <h1>
             <a id="test-2-" class="anchor" href="#test-2-" aria-hidden="true">
@@ -73,11 +77,17 @@
                 width = 300,
                 height = 300,
                 colour = 'hotpink',
+                clearColour = 'white',
                 mousedown = false;
 
         // resize the canvas
         canvas.width = width;
         canvas.height = height;
+
+        var ClearCanvas = function (e) {
+            c.fillStyle = clearColour;
+            c.fillRect(0,0, width, height);
+        };
 
         function draw() {
             if (mousedown) {
@@ -104,6 +114,9 @@
             draw();
         }, false);
 
+        var clearBtn = document.getElementById("clear");
+        clearBtn.addEventListener('click', ClearCanvas, false);
+
         canvas.addEventListener('mousedown', function (event) {
             mousedown = true;
         }, false);
@@ -113,12 +126,13 @@
 
         var link = document.createElement('a');
         link.classList.add("download-canvas");
+        link.classList.add("btn");
         link.innerHTML = 'download image';
         link.addEventListener('click', function (ev) {
-            link.href = canvas.toDataURL();
-            link.download = "mypainting.png";
+            link.href = canvas.toDataURL('image/jpg');
+            link.download = "mypainting.jpg";
         }, false);
-        $j('#main-block').append(link);
+        $j('.btn-container').prepend(link);
     })(jQuery);
 </script>
 
